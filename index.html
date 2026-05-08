@@ -3,109 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجري للتيشرتات - عروض خاصة</title>
+    <title>المتجر الجزائري الحديث</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #e63946; --secondary: #1d3557; --success: #25d366; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; color: #333; }
-        .header { background: var(--secondary); color: white; padding: 15px; text-align: center; }
-        .container { max-width: 450px; margin: 15px auto; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); padding-bottom: 20px; }
-        .offer-box { background: #fff3cd; color: #856404; padding: 10px; font-weight: bold; text-align: center; border-bottom: 2px dashed #ffeeba; }
-        .product-img { width: 100%; height: auto; }
-        .order-form { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
-        label { font-weight: bold; margin-bottom: -5px; font-size: 0.9rem; color: #555; }
-        input, select { padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; outline: none; background: #fafafa; }
-        .summary { background: #f8f9fa; padding: 15px; border-radius: 10px; margin-top: 5px; border: 1px solid #eee; }
-        .summary-item { display: flex; justify-content: space-between; margin-bottom: 5px; }
-        .total { border-top: 2px solid #ddd; padding-top: 8px; font-weight: bold; color: var(--primary); font-size: 1.2rem; }
-        .btn-send { background: var(--success); color: white; border: none; padding: 15px; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        .btn-send:hover { background: #128c7e; }
+        :root { --primary: #2563eb; --accent: #ef4444; --success: #22c55e; --bg: #f3f4f6; }
+        * { box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
+        body { background-color: var(--bg); margin: 0; padding: 0; }
+        
+        /* Header & Navigation */
+        .header { background: white; padding: 15px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
+
+        /* Offer Bar */
+        .promo-bar { background: var(--accent); color: white; padding: 10px; text-align: center; font-size: 0.9rem; font-weight: bold; }
+
+        .main-container { max-width: 600px; margin: 20px auto; padding: 0 15px; }
+
+        /* Card Style */
+        .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        
+        /* Image Slider Area */
+        .image-container { position: relative; width: 100%; aspect-ratio: 1/1; background: #eee; }
+        .product-img { width: 100%; height: 100%; object-fit: cover; }
+
+        .content { padding: 25px; }
+        h2 { margin: 0 0 10px 0; color: #1f2937; }
+        .price-badge { background: #dbeafe; color: var(--primary); padding: 5px 15px; border-radius: 50px; font-weight: bold; display: inline-block; margin-bottom: 20px; }
+
+        /* Form Styling */
+        .form-group { margin-bottom: 20px; text-align: right; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: #4b5563; font-size: 0.9rem; }
+        input, select { width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 1rem; transition: 0.3s; outline: none; }
+        input:focus, select:focus { border-color: var(--primary); background: #fefefe; }
+
+        /* Summary Area */
+        .order-summary { background: #f9fafb; padding: 20px; border-radius: 15px; margin-top: 20px; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 8px; color: #6b7280; }
+        .total-row { border-top: 2px solid #e5e7eb; margin-top: 10px; padding-top: 10px; font-weight: bold; color: #111827; font-size: 1.2rem; }
+
+        /* Button */
+        .btn-buy { background: var(--success); color: white; border: none; width: 100%; padding: 18px; border-radius: 12px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 5px 15px rgba(34, 197, 94, 0.3); }
+        .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(34, 197, 94, 0.4); }
+
+        footer { text-align: center; padding: 30px; color: #9ca3af; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
+    <div class="promo-bar">🔥 عرض محدود: 1 بـ 1000دج | 2 بـ 1800دج | 3 بـ 2500دج 🔥</div>
+
     <div class="header">
-        <h2>متجر التيشرتات 🇩🇿</h2>
+        <div class="logo">EL-MARKET DZ</div>
     </div>
 
-    <div class="container">
-        <div class="offer-box">
-            🔥 عرض خاص: 1 بـ 1000دج | 2 بـ 1800دج | 3 بـ 2500دج
-        </div>
-        
-        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800" alt="Product" class="product-img">
-
-        <form class="order-form">
-            <label>الاسم الكامل:</label>
-            <input type="text" id="name" placeholder="مثال: محمد أحمد" required>
-            
-            <label>رقم الهاتف:</label>
-            <input type="tel" id="phone" placeholder="06XXXXXXXX" required>
-
-            <label>كمية التيشرتات:</label>
-            <select id="quantity" onchange="calculate()">
-                <option value="1">تيشرت واحد (1000 دج)</option>
-                <option value="2">تيشرتات 2 (1800 دج)</option>
-                <option value="3">تيشرتات 3 (2500 دج)</option>
-            </select>
-
-            <label>الولاية (التوصيل عبر نواست):</label>
-            <select id="wilaya" onchange="calculate()">
-                <option value="0">-- اختر الولاية --</option>
-                <option value="400" data-w="الجزائر العاصمة">01. الجزائر العاصمة (400 دج)</option>
-                <option value="600" data-w="البليدة/تيبازة/بومرداس">02. ضواحي العاصمة (600 دج)</option>
-                <option value="800" data-w="ولايات الشمال">03. ولايات الشمال (800 دج)</option>
-                <option value="1000" data-w="الهضاب والجنوب">04. الجنوب والهضاب (1000 دج)</option>
-            </select>
-
-            <div class="summary">
-                <div class="summary-item"><span>سعر المنتجات:</span> <span id="priceText">1000 دج</span></div>
-                <div class="summary-item"><span>سعر التوصيل:</span> <span id="shipText">0 دج</span></div>
-                <div class="summary-item total"><span>المجموع الكلي:</span> <span id="totalText">1000 دج</span></div>
+    <div class="main-container">
+        <div class="card">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800" class="product-img" alt="تيشرت">
             </div>
 
-            <button type="button" class="btn-send" onclick="submitToWa()">إرسال الطلب عبر واتساب ✅</button>
-        </form>
+            <div class="content">
+                <h2>تيشرت عصري - جودة عالية</h2>
+                <div class="price-badge">متوفر في المخزن ✅</div>
+
+                <div class="form-group">
+                    <label>الاسم الكامل (اللقب والاسم):</label>
+                    <input type="text" id="fullname" placeholder="أدخل اسمك هنا">
+                </div>
+
+                <div class="form-group">
+                    <label>رقم الهاتف:</label>
+                    <input type="tel" id="phone" placeholder="06XXXXXXXX">
+                </div>
+
+                <div class="form-group">
+                    <label>العرض المطلوب (الكمية):</label>
+                    <select id="offer" onchange="updatePrices()">
+                        <option value="1000" data-qty="1">1 تيشرت بـ 1000 دج</option>
+                        <option value="1800" data-qty="2">2 تيشرت بـ 1800 دج (توفير 200دج)</option>
+                        <option value="2500" data-qty="3">3 تيشرت بـ 2500 دج (توفير 500دج)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>الولاية (التوصيل مع شركة نواست):</label>
+                    <select id="wilaya" onchange="updatePrices()">
+                        <option value="0">-- اختر الولاية (58 ولاية) --</option>
+                        <option value="400">01. أدرار (1000 دج)</option>
+                        <option value="450">02. الشلف (600 دج)</option>
+                        <option value="1000">03. الأغواط (900 دج)</option>
+                        <option value="500">04. أم البواقي (700 دج)</option>
+                        <option value="500">05. باتنة (700 دج)</option>
+                        <option value="500">06. بجاية (600 دج)</option>
+                        <option value="500">07. بسكرة (900 دج)</option>
+                        <option value="500">08. بشار (1000 دج)</option>
+                        <option value="400">09. البليدة (500 دج)</option>
+                        <option value="500">10. البويرة (600 دج)</option>
+                        <option value="400">11. تمنراست (1200 دج)</option>
+                        <option value="500">12. تبسة (800 دج)</option>
+                        <option value="500">13. تلمسان (800 دج)</option>
+                        <option value="450">14. تيارت (700 دج)</option>
+                        <option value="400">15. تيزي وزو (600 دج)</option>
+                        <option value="350">16. الجزائر العاصمة (400 دج)</option>
+                        <option value="500">17. الجلفة (800 دج)</option>
+                        <option value="500">18. جيجل (700 دج)</option>
+                        <option value="500">19. سطيف (700 دج)</option>
+                        <option value="500">20. سعيدة (800 دج)</option>
+                        <option value="500">21. سكيكدة (700 دج)</option>
+                        <option value="500">22. سيدي بلعباس (800 دج)</option>
+                        <option value="500">23. عنابة (700 دج)</option>
+                        <option value="500">24. قالمة (700 دج)</option>
+                        <option value="500">25. قسنطينة (700 دج)</option>
+                        <option value="500">26. المدية (600 دج)</option>
+                        <option value="500">27. مستغانم (700 دج)</option>
+                        <option value="500">28. المسيلة (700 دج)</option>
+                        <option value="500">29. معسكر (700 دج)</option>
+                        <option value="500">30. ورقلة (1000 دج)</option>
+                        <option value="500">31. وهران (700 دج)</option>
+                        <option value="500">32. البيض (900 دج)</option>
+                        <option value="500">33. إليزي (1200 دج)</option>
+                        <option value="500">34. برج بوعريريج (700 دج)</option>
+                        <option value="400">35. بومرداس (500 دج)</option>
+                        <option value="500">36. الطارف (800 دج)</option>
+                        <option value="500">37. تندوف (1200 دج)</option>
+                        <option value="500">38. تيسمسيلت (700 دج)</option>
+                        <option value="500">39. الوادي (900 دج)</option>
+                        <option value="500">40. خنشلة (800 دج)</option>
+                        <option value="500">41. سوق أهراس (800 دج)</option>
+                        <option value="450">42. تيبازة (500 دج)</option>
+                        <option value="500">43. ميلة (700 دج)</option>
+                        <option value="500">44. عين الدفلى (600 دج)</option>
+                        <option value="500">45. النعامة (900 دج)</option>
+                        <option value="500">46. عين تموشنت (800 دج)</option>
+                        <option value="500">47. غرداية (900 دج)</option>
+                        <option value="500">48. غليزان (700 دج)</option>
+                        <option value="600">49. تيميمون (1100 دج)</option>
+                        <option value="600">50. برج باجي مختار (1500 دج)</option>
+                        <option value="600">51. أولاد جلال (900 دج)</option>
+                        <option value="600">52. بني عباس (1100 دج)</option>
+                        <option value="600">53. عين صالح (1200 دج)</option>
+                        <option value="600">54. عين قزام (1500 دج)</option>
+                        <option value="600">55. تقرت (1000 دج)</option>
+                        <option value="600">56. جانت (1500 دج)</option>
+                        <option value="600">57. المغير (1000 دج)</option>
+                        <option value="600">58. المنيعة (1100 دج)</option>
+                    </select>
+                </div>
+
+                <div class="order-summary">
+                    <div class="summary-row"><span>سعر التيشرتات:</span> <span id="out-price">1000 دج</span></div>
+                    <div class="summary-row"><span>سعر التوصيل (نواست):</span> <span id="out-ship">0 دج</span></div>
+                    <div class="summary-row total-row"><span>المجموع الإجمالي:</span> <span id="out-total">---</span></div>
+                </div>
+
+                <br>
+                <button class="btn-buy" onclick="sendOrder()">
+                    تأكيد الطلب عبر واتساب ✅
+                </button>
+            </div>
+        </div>
     </div>
 
+    <footer>متجرك الإلكتروني - جميع الحقوق محفوظة 2026</footer>
+
     <script>
-        function calculate() {
-            const qty = document.getElementById('quantity').value;
+        function updatePrices() {
+            const price = parseInt(document.getElementById('offer').value);
             const ship = parseInt(document.getElementById('wilaya').value);
             
-            let p = 0;
-            if(qty == "1") p = 1000;
-            else if(qty == "2") p = 1800;
-            else if(qty == "3") p = 2500;
-
-            document.getElementById('priceText').innerText = p + " دج";
-            document.getElementById('shipText').innerText = ship + " دج";
-            document.getElementById('totalText').innerText = (p + ship) + " دج";
+            document.getElementById('out-price').innerText = price + " دج";
+            document.getElementById('out-ship').innerText = ship + " دج";
+            
+            if(ship > 0) {
+                document.getElementById('out-total').innerText = (price + ship) + " دج";
+            } else {
+                document.getElementById('out-total').innerText = "اختر الولاية";
+            }
         }
 
-        function submitToWa() {
-            const name = document.getElementById('name').value;
+        function sendOrder() {
+            const name = document.getElementById('fullname').value;
             const phone = document.getElementById('phone').value;
-            const qty = document.getElementById('quantity').value;
-            const ship = document.getElementById('wilaya').value;
-            const wName = document.getElementById('wilaya').options[document.getElementById('wilaya').selectedIndex].getAttribute('data-w');
-            const total = document.getElementById('totalText').innerText;
+            const offerSelect = document.getElementById('offer');
+            const qty = offerSelect.options[offerSelect.selectedIndex].getAttribute('data-qty');
+            const wilayaSelect = document.getElementById('wilaya');
+            const wilayaName = wilayaSelect.options[wilayaSelect.selectedIndex].text;
+            const ship = wilayaSelect.value;
+            const total = document.getElementById('out-total').innerText;
 
             if(!name || !phone || ship == "0") {
-                alert("يرجى ملء كافة المعلومات واختيار الولاية");
+                alert("يرجى إكمال البيانات (الاسم، الهاتف، والولاية) قبل الإرسال");
                 return;
             }
 
-            // --- ضع رقمك هنا ---
-            const myNum = "213661000000"; 
-            
-            const msg = `طلب جديد 🛒%0A` + 
-                        `👤 الاسم: ${name}%0A` +
-                        `📞 الهاتف: ${phone}%0A` +
-                        `📍 الولاية: ${wName}%0A` +
-                        `👕 الكمية: ${qty}%0A` +
-                        `💵 الإجمالي: ${total}`;
+            // --- رقم هاتفك الخاص ---
+            const myNum = "0663681288"; 
 
-            window.open(`https://wa.me/${myNum}?text=${msg}`, '_blank');
+            const text = `طلب جديد 🛒%0A` +
+                         `👤 الاسم: ${name}%0A` +
+                         `📞 الهاتف: ${phone}%0A` +
+                         `👕 الكمية: ${qty}%0A` +
+                         `📍 الولاية: ${wilayaName}%0A` +
+                         `💵 المجموع: ${total}`;
+
+            window.open(`https://wa.me/${myNum}?text=${text}`, '_blank');
         }
     </script>
 </body>
