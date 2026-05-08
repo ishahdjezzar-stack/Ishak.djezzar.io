@@ -3,18 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقعي الأول</title>
+    <title>متجري للتيشرتات - عروض خاصة</title>
     <style>
-        body { font-family: sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; border-top: 5px solid #1877f2; }
-        h1 { color: #1877f2; margin-bottom: 10px; }
-        p { color: #555; font-size: 1.1rem; }
+        :root { --primary: #e63946; --secondary: #1d3557; --success: #25d366; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; color: #333; }
+        .header { background: var(--secondary); color: white; padding: 15px; text-align: center; }
+        .container { max-width: 450px; margin: 15px auto; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); padding-bottom: 20px; }
+        .offer-box { background: #fff3cd; color: #856404; padding: 10px; font-weight: bold; text-align: center; border-bottom: 2px dashed #ffeeba; }
+        .product-img { width: 100%; height: auto; }
+        .order-form { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+        label { font-weight: bold; margin-bottom: -5px; font-size: 0.9rem; color: #555; }
+        input, select { padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; outline: none; background: #fafafa; }
+        .summary { background: #f8f9fa; padding: 15px; border-radius: 10px; margin-top: 5px; border: 1px solid #eee; }
+        .summary-item { display: flex; justify-content: space-between; margin-bottom: 5px; }
+        .total { border-top: 2px solid #ddd; padding-top: 8px; font-weight: bold; color: var(--primary); font-size: 1.2rem; }
+        .btn-send { background: var(--success); color: white; border: none; padding: 15px; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .btn-send:hover { background: #128c7e; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>🎉 مبروك يا بطل!</h1>
-        <p>هذا أول موقع احترافي لي على GitHub.</p>
+
+    <div class="header">
+        <h2>متجر التيشرتات 🇩🇿</h2>
     </div>
+
+    <div class="container">
+        <div class="offer-box">
+            🔥 عرض خاص: 1 بـ 1000دج | 2 بـ 1800دج | 3 بـ 2500دج
+        </div>
+        
+        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800" alt="Product" class="product-img">
+
+        <form class="order-form">
+            <label>الاسم الكامل:</label>
+            <input type="text" id="name" placeholder="مثال: محمد أحمد" required>
+            
+            <label>رقم الهاتف:</label>
+            <input type="tel" id="phone" placeholder="06XXXXXXXX" required>
+
+            <label>كمية التيشرتات:</label>
+            <select id="quantity" onchange="calculate()">
+                <option value="1">تيشرت واحد (1000 دج)</option>
+                <option value="2">تيشرتات 2 (1800 دج)</option>
+                <option value="3">تيشرتات 3 (2500 دج)</option>
+            </select>
+
+            <label>الولاية (التوصيل عبر نواست):</label>
+            <select id="wilaya" onchange="calculate()">
+                <option value="0">-- اختر الولاية --</option>
+                <option value="400" data-w="الجزائر العاصمة">01. الجزائر العاصمة (400 دج)</option>
+                <option value="600" data-w="البليدة/تيبازة/بومرداس">02. ضواحي العاصمة (600 دج)</option>
+                <option value="800" data-w="ولايات الشمال">03. ولايات الشمال (800 دج)</option>
+                <option value="1000" data-w="الهضاب والجنوب">04. الجنوب والهضاب (1000 دج)</option>
+            </select>
+
+            <div class="summary">
+                <div class="summary-item"><span>سعر المنتجات:</span> <span id="priceText">1000 دج</span></div>
+                <div class="summary-item"><span>سعر التوصيل:</span> <span id="shipText">0 دج</span></div>
+                <div class="summary-item total"><span>المجموع الكلي:</span> <span id="totalText">1000 دج</span></div>
+            </div>
+
+            <button type="button" class="btn-send" onclick="submitToWa()">إرسال الطلب عبر واتساب ✅</button>
+        </form>
+    </div>
+
+    <script>
+        function calculate() {
+            const qty = document.getElementById('quantity').value;
+            const ship = parseInt(document.getElementById('wilaya').value);
+            
+            let p = 0;
+            if(qty == "1") p = 1000;
+            else if(qty == "2") p = 1800;
+            else if(qty == "3") p = 2500;
+
+            document.getElementById('priceText').innerText = p + " دج";
+            document.getElementById('shipText').innerText = ship + " دج";
+            document.getElementById('totalText').innerText = (p + ship) + " دج";
+        }
+
+        function submitToWa() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const qty = document.getElementById('quantity').value;
+            const ship = document.getElementById('wilaya').value;
+            const wName = document.getElementById('wilaya').options[document.getElementById('wilaya').selectedIndex].getAttribute('data-w');
+            const total = document.getElementById('totalText').innerText;
+
+            if(!name || !phone || ship == "0") {
+                alert("يرجى ملء كافة المعلومات واختيار الولاية");
+                return;
+            }
+
+            // --- ضع رقمك هنا ---
+            const myNum = "213661000000"; 
+            
+            const msg = `طلب جديد 🛒%0A` + 
+                        `👤 الاسم: ${name}%0A` +
+                        `📞 الهاتف: ${phone}%0A` +
+                        `📍 الولاية: ${wName}%0A` +
+                        `👕 الكمية: ${qty}%0A` +
+                        `💵 الإجمالي: ${total}`;
+
+            window.open(`https://wa.me/${myNum}?text=${msg}`, '_blank');
+        }
+    </script>
 </body>
 </html>
