@@ -3,54 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المتجر الجزائري الحديث</title>
+    <title>متجر التيشرتات الجزائري - نسخة احترافية</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #2563eb; --accent: #ef4444; --success: #22c55e; --bg: #f3f4f6; }
-        * { box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
-        body { background-color: var(--bg); margin: 0; padding: 0; }
+        :root { --primary: #0f172a; --accent: #ef4444; --success: #22c55e; --bg: #f8fafc; }
+        * { box-sizing: border-box; font-family: 'Tajawal', sans-serif; margin: 0; padding: 0; }
+        body { background-color: var(--bg); color: #1e293b; padding-bottom: 50px; }
         
-        /* Header & Navigation */
-        .header { background: white; padding: 15px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
+        .promo-bar { background: var(--accent); color: white; padding: 12px; text-align: center; font-weight: bold; font-size: 0.95rem; position: sticky; top: 0; z-index: 1000; }
+        .header { background: white; padding: 20px; text-align: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+        .logo { font-size: 1.8rem; font-weight: bold; color: var(--primary); }
 
-        /* Offer Bar */
-        .promo-bar { background: var(--accent); color: white; padding: 10px; text-align: center; font-size: 0.9rem; font-weight: bold; }
-
-        .main-container { max-width: 600px; margin: 20px auto; padding: 0 15px; }
-
-        /* Card Style */
-        .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .main-container { max-width: 600px; margin: 25px auto; padding: 0 15px; }
+        .card { background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; }
         
-        /* Image Slider Area */
-        .image-container { position: relative; width: 100%; aspect-ratio: 1/1; background: #eee; }
-        .product-img { width: 100%; height: 100%; object-fit: cover; }
+        /* Gallery */
+        .gallery { padding: 15px; }
+        .main-img-wrap { width: 100%; aspect-ratio: 1/1; border-radius: 20px; overflow: hidden; background: #f1f5f9; margin-bottom: 15px; border: 1px solid #e2e8f0; }
+        .main-img-wrap img { width: 100%; height: 100%; object-fit: contain; }
+        .thumb-list { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; }
+        .thumb-list img { width: 65px; height: 65px; border-radius: 12px; cursor: pointer; border: 2px solid transparent; object-fit: cover; transition: 0.2s; }
+        .thumb-list img.active { border-color: var(--primary); transform: scale(1.05); }
 
         .content { padding: 25px; }
-        h2 { margin: 0 0 10px 0; color: #1f2937; }
-        .price-badge { background: #dbeafe; color: var(--primary); padding: 5px 15px; border-radius: 50px; font-weight: bold; display: inline-block; margin-bottom: 20px; }
+        .badge { background: #f1f5f9; color: var(--primary); padding: 6px 15px; border-radius: 50px; font-weight: bold; font-size: 0.85rem; display: inline-block; margin-bottom: 15px; }
 
-        /* Form Styling */
-        .form-group { margin-bottom: 20px; text-align: right; }
-        label { display: block; margin-bottom: 8px; font-weight: bold; color: #4b5563; font-size: 0.9rem; }
-        input, select { width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 1rem; transition: 0.3s; outline: none; }
-        input:focus, select:focus { border-color: var(--primary); background: #fefefe; }
+        /* Form */
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: #475569; font-size: 0.9rem; }
+        input, select { width: 100%; padding: 14px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 1rem; outline: none; transition: 0.3s; background: #fff; }
+        input:focus, select:focus { border-color: var(--primary); background: #fff; }
 
-        /* Summary Area */
-        .order-summary { background: #f9fafb; padding: 20px; border-radius: 15px; margin-top: 20px; }
-        .summary-row { display: flex; justify-content: space-between; margin-bottom: 8px; color: #6b7280; }
-        .total-row { border-top: 2px solid #e5e7eb; margin-top: 10px; padding-top: 10px; font-weight: bold; color: #111827; font-size: 1.2rem; }
+        /* Color Selection */
+        .color-options { display: flex; gap: 12px; margin-top: 5px; }
+        .color-item { position: relative; cursor: pointer; }
+        .color-item input { position: absolute; opacity: 0; cursor: pointer; }
+        .color-box { height: 35px; width: 35px; border-radius: 50%; border: 2px solid #e2e8f0; display: inline-block; transition: 0.2s; }
+        .color-item input:checked + .color-box { border-color: var(--primary); transform: scale(1.2); box-shadow: 0 0 10px rgba(0,0,0,0.1); }
 
-        /* Button */
-        .btn-buy { background: var(--success); color: white; border: none; width: 100%; padding: 18px; border-radius: 12px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 5px 15px rgba(34, 197, 94, 0.3); }
-        .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(34, 197, 94, 0.4); }
+        /* Summary */
+        .summary-box { background: #f8fafc; padding: 20px; border-radius: 18px; margin: 25px 0; border: 1px solid #e2e8f0; }
+        .s-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .s-total { border-top: 2px solid #e2e8f0; margin-top: 12px; padding-top: 12px; font-weight: bold; font-size: 1.2rem; color: var(--accent); }
 
-        footer { text-align: center; padding: 30px; color: #9ca3af; font-size: 0.8rem; }
+        .btn-order { background: var(--success); color: white; border: none; width: 100%; padding: 18px; border-radius: 15px; font-size: 1.2rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 10px 20px rgba(34, 197, 94, 0.2); transition: 0.3s; }
+        .btn-order:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(34, 197, 94, 0.3); }
+
+        footer { text-align: center; padding: 30px; color: #94a3b8; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <div class="promo-bar">🔥 عرض محدود: 1 بـ 1000دج | 2 بـ 1800دج | 3 بـ 2500دج 🔥</div>
+    <div class="promo-bar">🎁 عرض العيد: 1 بـ 1000دج | 2 بـ 1800دج | 3 بـ 2500دج 🎁</div>
 
     <div class="header">
         <div class="logo">EL-MARKET DZ</div>
@@ -58,17 +62,26 @@
 
     <div class="main-container">
         <div class="card">
-            <div class="image-container">
-                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800" class="product-img" alt="تيشرت">
+            <div class="gallery">
+                <div class="main-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800" id="mainImg">
+                </div>
+                <div class="thumb-list">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800" class="active" onclick="viewImg(this)">
+                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800" onclick="viewImg(this)">
+                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800" onclick="viewImg(this)">
+                    <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=800" onclick="viewImg(this)">
+                </div>
             </div>
 
             <div class="content">
-                <h2>تيشرت عصري - جودة عالية</h2>
-                <div class="price-badge">متوفر في المخزن ✅</div>
+                <div class="badge">جودة قطنية ممتازة 100%</div>
+                <h2>تيشرت كلاسيك عصري</h2>
+                <br>
 
                 <div class="form-group">
-                    <label>الاسم الكامل (اللقب والاسم):</label>
-                    <input type="text" id="fullname" placeholder="أدخل اسمك هنا">
+                    <label>الاسم الكامل:</label>
+                    <input type="text" id="name" placeholder="أدخل اسمك الكامل">
                 </div>
 
                 <div class="form-group">
@@ -77,136 +90,103 @@
                 </div>
 
                 <div class="form-group">
-                    <label>العرض المطلوب (الكمية):</label>
-                    <select id="offer" onchange="updatePrices()">
-                        <option value="1000" data-qty="1">1 تيشرت بـ 1000 دج</option>
-                        <option value="1800" data-qty="2">2 تيشرت بـ 1800 دج (توفير 200دج)</option>
-                        <option value="2500" data-qty="3">3 تيشرت بـ 2500 دج (توفير 500دج)</option>
+                    <label>إختر اللون المتوفر:</label>
+                    <div class="color-options">
+                        <label class="color-item">
+                            <input type="radio" name="color" value="أسود" checked>
+                            <span class="color-box" style="background: #000;"></span>
+                        </label>
+                        <label class="color-item">
+                            <input type="radio" name="color" value="أبيض">
+                            <span class="color-box" style="background: #fff; border: 1px solid #ddd;"></span>
+                        </label>
+                        <label class="color-item">
+                            <input type="radio" name="color" value="أزرق داكن">
+                            <span class="color-box" style="background: #1e3a8a;"></span>
+                        </label>
+                        <label class="color-item">
+                            <input type="radio" name="color" value="رمادي">
+                            <span class="color-box" style="background: #94a3b8;"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>العرض المطلوب:</label>
+                    <select id="qty" onchange="calc()">
+                        <option value="1000" data-n="1">تيشرت واحد (1000 دج)</option>
+                        <option value="1800" data-n="2">2 تيشرتات (1800 دج)</option>
+                        <option value="2500" data-n="3">3 تيشرتات (2500 دج)</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>الولاية (التوصيل مع شركة نواست):</label>
-                    <select id="wilaya" onchange="updatePrices()">
+                    <select id="wilaya" onchange="calc()">
                         <option value="0">-- اختر الولاية (58 ولاية) --</option>
-                        <option value="400">01. أدرار (1000 دج)</option>
-                        <option value="450">02. الشلف (600 دج)</option>
-                        <option value="1000">03. الأغواط (900 دج)</option>
-                        <option value="500">04. أم البواقي (700 دج)</option>
-                        <option value="500">05. باتنة (700 دج)</option>
-                        <option value="500">06. بجاية (600 دج)</option>
-                        <option value="500">07. بسكرة (900 دج)</option>
-                        <option value="500">08. بشار (1000 دج)</option>
-                        <option value="400">09. البليدة (500 دج)</option>
-                        <option value="500">10. البويرة (600 دج)</option>
-                        <option value="400">11. تمنراست (1200 دج)</option>
-                        <option value="500">12. تبسة (800 دج)</option>
-                        <option value="500">13. تلمسان (800 دج)</option>
-                        <option value="450">14. تيارت (700 دج)</option>
-                        <option value="400">15. تيزي وزو (600 دج)</option>
-                        <option value="350">16. الجزائر العاصمة (400 دج)</option>
-                        <option value="500">17. الجلفة (800 دج)</option>
-                        <option value="500">18. جيجل (700 دج)</option>
-                        <option value="500">19. سطيف (700 دج)</option>
-                        <option value="500">20. سعيدة (800 دج)</option>
-                        <option value="500">21. سكيكدة (700 دج)</option>
-                        <option value="500">22. سيدي بلعباس (800 دج)</option>
-                        <option value="500">23. عنابة (700 دج)</option>
-                        <option value="500">24. قالمة (700 دج)</option>
-                        <option value="500">25. قسنطينة (700 دج)</option>
-                        <option value="500">26. المدية (600 دج)</option>
-                        <option value="500">27. مستغانم (700 دج)</option>
-                        <option value="500">28. المسيلة (700 دج)</option>
-                        <option value="500">29. معسكر (700 دج)</option>
-                        <option value="500">30. ورقلة (1000 دج)</option>
-                        <option value="500">31. وهران (700 دج)</option>
-                        <option value="500">32. البيض (900 دج)</option>
-                        <option value="500">33. إليزي (1200 دج)</option>
-                        <option value="500">34. برج بوعريريج (700 دج)</option>
-                        <option value="400">35. بومرداس (500 دج)</option>
-                        <option value="500">36. الطارف (800 دج)</option>
-                        <option value="500">37. تندوف (1200 دج)</option>
-                        <option value="500">38. تيسمسيلت (700 دج)</option>
-                        <option value="500">39. الوادي (900 دج)</option>
-                        <option value="500">40. خنشلة (800 دج)</option>
-                        <option value="500">41. سوق أهراس (800 دج)</option>
-                        <option value="450">42. تيبازة (500 دج)</option>
-                        <option value="500">43. ميلة (700 دج)</option>
-                        <option value="500">44. عين الدفلى (600 دج)</option>
-                        <option value="500">45. النعامة (900 دج)</option>
-                        <option value="500">46. عين تموشنت (800 دج)</option>
-                        <option value="500">47. غرداية (900 دج)</option>
-                        <option value="500">48. غليزان (700 دج)</option>
-                        <option value="600">49. تيميمون (1100 دج)</option>
-                        <option value="600">50. برج باجي مختار (1500 دج)</option>
-                        <option value="600">51. أولاد جلال (900 دج)</option>
-                        <option value="600">52. بني عباس (1100 دج)</option>
-                        <option value="600">53. عين صالح (1200 دج)</option>
-                        <option value="600">54. عين قزام (1500 دج)</option>
-                        <option value="600">55. تقرت (1000 دج)</option>
-                        <option value="600">56. جانت (1500 دج)</option>
-                        <option value="600">57. المغير (1000 دج)</option>
-                        <option value="600">58. المنيعة (1100 دج)</option>
-                    </select>
+                        <option value="400">01. الجزائر العاصمة (400 دج)</option>
+                        <option value="600">02. البليدة / تيبازة / بومرداس (600 دج)</option>
+                        <option value="800">03. ولايات الشمال (800 دج)</option>
+                        <option value="1000">04. ولايات الجنوب (1000 دج)</option>
+                        </select>
                 </div>
 
-                <div class="order-summary">
-                    <div class="summary-row"><span>سعر التيشرتات:</span> <span id="out-price">1000 دج</span></div>
-                    <div class="summary-row"><span>سعر التوصيل (نواست):</span> <span id="out-ship">0 دج</span></div>
-                    <div class="summary-row total-row"><span>المجموع الإجمالي:</span> <span id="out-total">---</span></div>
+                <div class="summary-box">
+                    <div class="s-row"><span>السعر:</span> <span id="p-item">1000 دج</span></div>
+                    <div class="s-row"><span>التوصيل:</span> <span id="p-ship">0 دج</span></div>
+                    <div class="s-total">المجموع: <span id="p-total">---</span></div>
                 </div>
 
-                <br>
-                <button class="btn-buy" onclick="sendOrder()">
-                    تأكيد الطلب عبر واتساب ✅
+                <button class="btn-order" onclick="submit()">
+                    تأكيد الطلب عبر واتساب 💬
                 </button>
             </div>
         </div>
     </div>
 
-    <footer>متجرك الإلكتروني - جميع الحقوق محفوظة 2026</footer>
+    <footer>جميع الحقوق محفوظة © 2026</footer>
 
     <script>
-        function updatePrices() {
-            const price = parseInt(document.getElementById('offer').value);
-            const ship = parseInt(document.getElementById('wilaya').value);
-            
-            document.getElementById('out-price').innerText = price + " دج";
-            document.getElementById('out-ship').innerText = ship + " دج";
-            
-            if(ship > 0) {
-                document.getElementById('out-total').innerText = (price + ship) + " دج";
-            } else {
-                document.getElementById('out-total').innerText = "اختر الولاية";
-            }
+        function viewImg(el) {
+            document.getElementById('mainImg').src = el.src;
+            document.querySelectorAll('.thumb-list img').forEach(i => i.classList.remove('active'));
+            el.classList.add('active');
         }
 
-        function sendOrder() {
-            const name = document.getElementById('fullname').value;
+        function calc() {
+            const price = parseInt(document.getElementById('qty').value);
+            const ship = parseInt(document.getElementById('wilaya').value);
+            document.getElementById('p-item').innerText = price + " دج";
+            document.getElementById('p-ship').innerText = ship + " دج";
+            if(ship > 0) document.getElementById('p-total').innerText = (price + ship) + " دج";
+        }
+
+        function submit() {
+            const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
-            const offerSelect = document.getElementById('offer');
-            const qty = offerSelect.options[offerSelect.selectedIndex].getAttribute('data-qty');
+            const color = document.querySelector('input[name="color"]:checked').value;
+            const qtySelect = document.getElementById('qty');
+            const qtyCount = qtySelect.options[qtySelect.selectedIndex].getAttribute('data-n');
             const wilayaSelect = document.getElementById('wilaya');
             const wilayaName = wilayaSelect.options[wilayaSelect.selectedIndex].text;
             const ship = wilayaSelect.value;
-            const total = document.getElementById('out-total').innerText;
+            const total = document.getElementById('p-total').innerText;
 
             if(!name || !phone || ship == "0") {
-                alert("يرجى إكمال البيانات (الاسم، الهاتف، والولاية) قبل الإرسال");
+                alert("يرجى ملء كافة البيانات");
                 return;
             }
 
-            // --- رقم هاتفك الخاص ---
-            const myNum = "0663681288"; 
+            const myWhatsApp = "213661000000"; // استبدله برقمك
+            const msg = `طلب جديد 🛒%0A%0A` +
+                        `👤 الاسم: ${name}%0A` +
+                        `📞 الهاتف: ${phone}%0A` +
+                        `🎨 اللون: ${color}%0A` +
+                        `👕 الكمية: ${qtyCount}%0A` +
+                        `📍 الولاية: ${wilayaName}%0A` +
+                        `💵 الإجمالي: ${total}`;
 
-            const text = `طلب جديد 🛒%0A` +
-                         `👤 الاسم: ${name}%0A` +
-                         `📞 الهاتف: ${phone}%0A` +
-                         `👕 الكمية: ${qty}%0A` +
-                         `📍 الولاية: ${wilayaName}%0A` +
-                         `💵 المجموع: ${total}`;
-
-            window.open(`https://wa.me/${myNum}?text=${text}`, '_blank');
+            window.open(`https://wa.me/${myWhatsApp}?text=${msg}`, '_blank');
         }
     </script>
 </body>
