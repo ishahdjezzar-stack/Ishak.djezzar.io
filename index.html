@@ -2,68 +2,192 @@
 <html dir="rtl" lang="ar">
 <head>
     <meta charset="UTF-8">
-    <title>متجر التيشرتات - عرض المنتجات</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر التيشرتات الجزائري - نسخة احترافية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #0f172a; --accent: #ef4444; --success: #22c55e; }
-        body { font-family: sans-serif; background: #f8fafc; padding: 20px; }
-        .card { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .main-img { width: 100%; border-radius: 15px; margin-bottom: 15px; }
+        :root { --primary: #0f172a; --accent: #ef4444; --success: #22c55e; --bg: #f8fafc; }
+        * { box-sizing: border-box; font-family: 'Tajawal', sans-serif; margin: 0; padding: 0; }
+        body { background-color: var(--bg); color: #1e293b; padding-bottom: 50px; }
+        
+        .promo-bar { background: var(--accent); color: white; padding: 12px; text-align: center; font-weight: bold; font-size: 0.95rem; position: sticky; top: 0; z-index: 1000; }
+        .header { background: white; padding: 20px; text-align: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+        .logo { font-size: 1.8rem; font-weight: bold; color: var(--primary); }
+
+        .main-container { max-width: 600px; margin: 25px auto; padding: 0 15px; }
+        .card { background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; }
+        
+        /* Gallery */
+        .gallery { padding: 15px; }
+        .main-img-wrap { width: 100%; aspect-ratio: 1/1; border-radius: 20px; overflow: hidden; background: #f1f5f9; margin-bottom: 15px; border: 1px solid #e2e8f0; }
+        .main-img-wrap img { width: 100%; height: 100%; object-fit: contain; }
         .thumb-list { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; }
-        .thumb-list img { width: 70px; height: 70px; border-radius: 10px; cursor: pointer; border: 2px solid transparent; }
-        .thumb-list img.active { border-color: var(--primary); }
-        .color-grid { display: flex; gap: 10px; margin-top: 10px; }
-        .btn-order { background: var(--success); color: white; width: 100%; padding: 15px; border: none; border-radius: 10px; font-size: 1.1rem; cursor: pointer; }
+        .thumb-list img { width: 65px; height: 65px; border-radius: 12px; cursor: pointer; border: 2px solid transparent; object-fit: cover; transition: 0.2s; }
+        .thumb-list img.active { border-color: var(--primary); transform: scale(1.05); }
+
+        .content { padding: 25px; }
+        .badge { background: #f1f5f9; color: var(--primary); padding: 6px 15px; border-radius: 50px; font-weight: bold; font-size: 0.85rem; display: inline-block; margin-bottom: 15px; }
+
+        /* Form */
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: #475569; font-size: 0.9rem; }
+        input, select { width: 100%; padding: 14px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 1rem; outline: none; transition: 0.3s; background: #fff; }
+        input:focus, select:focus { border-color: var(--primary); background: #fff; }
+
+        /* Color Selection */
+        .color-options { display: flex; gap: 12px; margin-top: 5px; }
+        .color-item { position: relative; cursor: pointer; }
+        .color-item input { position: absolute; opacity: 0; cursor: pointer; }
+        .color-box { height: 35px; width: 35px; border-radius: 50%; border: 2px solid #e2e8f0; display: inline-block; transition: 0.2s; }
+        .color-item input:checked + .color-box { border-color: var(--primary); transform: scale(1.2); box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+        /* Summary */
+        .summary-box { background: #f8fafc; padding: 20px; border-radius: 18px; margin: 25px 0; border: 1px solid #e2e8f0; }
+        .s-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .s-total { border-top: 2px solid #e2e8f0; margin-top: 12px; padding-top: 12px; font-weight: bold; font-size: 1.2rem; color: var(--accent); }
+
+        .btn-order { background: var(--success); color: white; border: none; width: 100%; padding: 18px; border-radius: 15px; font-size: 1.2rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 10px 20px rgba(34, 197, 94, 0.2); transition: 0.3s; }
+        .btn-order:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(34, 197, 94, 0.3); }
+
+        footer { text-align: center; padding: 30px; color: #94a3b8; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <div class="gallery">
-        <!-- الصورة الرئيسية -->
-        <img src="1000003814_2.png" id="mainImg" class="main-img">
-        
-        <!-- المصغرات (اضغط لتغيير اللون) -->
-        <div class="thumb-list">
-            <img src="1000003814_2.png" class="active" onclick="changeProduct(this, 'أسود')">
-            <img src="1000003808_2.png" onclick="changeProduct(this, 'أبيض')">
-            <img src="1000003809_2.png" onclick="changeProduct(this, 'أزرق غامق')">
-            <img src="1000003810_2.png" onclick="changeProduct(this, 'بنفسجي')">
-            <img src="1000003811_2.png" onclick="changeProduct(this, 'نيلي/أزرق')">
-            <img src="1000003812_2.png" onclick="changeProduct(this, 'عنابي')">
-            <img src="1000003813_2.png" onclick="changeProduct(this, 'سماوي')">
+    <div class="promo-bar">🎁 عرض العيد: 1 بـ 1000دج | 2 بـ 1800دج | 3 بـ 2500دج 🎁</div>
+
+    <div class="header">
+        <div class="logo">EL-MARKET DZ</div>
+    </div>
+
+    <div class="main-container">
+        <div class="card">
+            <div class="gallery">
+                <div class="main-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800" id="mainImg">
+                </div>
+                <div class="thumb-list">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800" class="active" onclick="viewImg(this)">
+                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800" onclick="viewImg(this)">
+                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800" onclick="viewImg(this)">
+                    <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=800" onclick="viewImg(this)">
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="badge">جودة قطنية ممتازة 100%</div>
+                <h2>تيشرت كلاسيك عصري</h2>
+                <br>
+
+                <div class="form-group">
+                    <label>الاسم الكامل:</label>
+                    <input type="text" id="name" placeholder="أدخل اسمك الكامل">
+                </div>
+
+                <div class="form-group">
+                    <label>رقم الهاتف:</label>
+                    <input type="tel" id="phone" placeholder="06XXXXXXXX">
+                </div>
+
+                <div class="form-group">
+                    <label>إختر اللون المتوفر:</label>
+                    <div class="color-options">
+                        <label class="color-item">
+                            <input type="radio" name="color" value="أسود" checked>
+                            <span class="color-box" style="background: #000;"></span>
+                        </label>
+                        <label class="color-item">
+                            <input type="radio" name="color" value="أبيض">
+                            <span class="color-box" style="background: #fff; border: 1px solid #ddd;"></span>
+                        </label>
+                        <label class="color-item">
+                            <input type="radio" name="color" value="أزرق داكن">
+                            <span class="color-box" style="background: #1e3a8a;"></span>
+                        </label>
+                        <label class="color-item">
+                            <input type="radio" name="color" value="رمادي">
+                            <span class="color-box" style="background: #94a3b8;"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>العرض المطلوب:</label>
+                    <select id="qty" onchange="calc()">
+                        <option value="1000" data-n="1">تيشرت واحد (1000 دج)</option>
+                        <option value="1800" data-n="2">2 تيشرتات (1800 دج)</option>
+                        <option value="2500" data-n="3">3 تيشرتات (2500 دج)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>الولاية (التوصيل مع شركة نواست):</label>
+                    <select id="wilaya" onchange="calc()">
+                        <option value="0">-- اختر الولاية (58 ولاية) --</option>
+                        <option value="400">01. الجزائر العاصمة (400 دج)</option>
+                        <option value="600">02. البليدة / تيبازة / بومرداس (600 دج)</option>
+                        <option value="800">03. ولايات الشمال (800 دج)</option>
+                        <option value="1000">04. ولايات الجنوب (1000 دج)</option>
+                        </select>
+                </div>
+
+                <div class="summary-box">
+                    <div class="s-row"><span>السعر:</span> <span id="p-item">1000 دج</span></div>
+                    <div class="s-row"><span>التوصيل:</span> <span id="p-ship">0 دج</span></div>
+                    <div class="s-total">المجموع: <span id="p-total">---</span></div>
+                </div>
+
+                <button class="btn-order" onclick="submit()">
+                    تأكيد الطلب عبر واتساب 💬
+                </button>
+            </div>
         </div>
     </div>
 
-    <div style="margin: 20px 0;">
-        <label>إختر اللون:</label>
-        <div id="colorDisplay" style="font-weight: bold; margin-bottom: 10px;">اللون المحدد: أسود</div>
-    </div>
+    <footer>جميع الحقوق محفوظة © 2026</footer>
 
-    <button class="btn-order" onclick="submitOrder()">اطلب الآن عبر واتساب</button>
-</div>
+    <script>
+        function viewImg(el) {
+            document.getElementById('mainImg').src = el.src;
+            document.querySelectorAll('.thumb-list img').forEach(i => i.classList.remove('active'));
+            el.classList.add('active');
+        }
 
-<script>
-    let selectedColor = "أسود";
+        function calc() {
+            const price = parseInt(document.getElementById('qty').value);
+            const ship = parseInt(document.getElementById('wilaya').value);
+            document.getElementById('p-item').innerText = price + " دج";
+            document.getElementById('p-ship').innerText = ship + " دج";
+            if(ship > 0) document.getElementById('p-total').innerText = (price + ship) + " دج";
+        }
 
-    function changeProduct(imgEl, color) {
-        // تغيير الصورة
-        document.getElementById('mainImg').src = imgEl.src;
-        
-        // تحديث النص
-        selectedColor = color;
-        document.getElementById('colorDisplay').innerText = "اللون المحدد: " + color;
-        
-        // تحديث الحدود للصورة المختارة
-        document.querySelectorAll('.thumb-list img').forEach(i => i.classList.remove('active'));
-        imgEl.classList.add('active');
-    }
+        function submit() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const color = document.querySelector('input[name="color"]:checked').value;
+            const qtySelect = document.getElementById('qty');
+            const qtyCount = qtySelect.options[qtySelect.selectedIndex].getAttribute('data-n');
+            const wilayaSelect = document.getElementById('wilaya');
+            const wilayaName = wilayaSelect.options[wilayaSelect.selectedIndex].text;
+            const ship = wilayaSelect.value;
+            const total = document.getElementById('p-total').innerText;
 
-    function submitOrder() {
-        const phone = "213661000000"; // ضع رقمك هنا
-        const msg = `مرحباً، أريد طلب تيشرت بلون: ${selectedColor}`;
-        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
-    }
-</script>
+            if(!name || !phone || ship == "0") {
+                alert("يرجى ملء كافة البيانات");
+                return;
+            }
 
+            const myWhatsApp = "213661000000"; // استبدله برقمك
+            const msg = `طلب جديد 🛒%0A%0A` +
+                        `👤 الاسم: ${name}%0A` +
+                        `📞 الهاتف: ${phone}%0A` +
+                        `🎨 اللون: ${color}%0A` +
+                        `👕 الكمية: ${qtyCount}%0A` +
+                        `📍 الولاية: ${wilayaName}%0A` +
+                        `💵 الإجمالي: ${total}`;
+
+            window.open(`https://wa.me/${myWhatsApp}?text=${msg}`, '_blank');
+        }
+    </script>
 </body>
 </html>
